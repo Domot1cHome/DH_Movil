@@ -1,20 +1,20 @@
 var datos = require("../Controlador/Datos");
-var direccionIp = datos.direccionIp;
+var ruta = datos.rutaServicio;
 
-export async function Loguearse(email, contraseña) {
+export async function Loguearse(usuario, contraseña) {
 
-  let foo = await fetch("http://"+direccionIp+"/ServiciosxDH/ServicioLoguarse.php?e="+email+"&c="+contraseña)
-  let baz = await foo.json();
-  var bar;
+  let consulta = await fetch(ruta + "Login.php?u=" + usuario + "&c=" + contraseña)
+  let resultado = await consulta.json();
+  var entrega;
 
-  if(baz[0]!=undefined){
-	bar = baz[0];
-  }else{
-  	bar =  null;
+  if (resultado[0] != undefined) {
+    entrega = resultado[0];
+  } else {
+    entrega = null;
   }
-
-  return bar;
   
+  return entrega;
+
 }
 
 

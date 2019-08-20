@@ -61,10 +61,12 @@ export default class CrearAmbientes extends React.Component {
     super(props);
     var datos = require("../Controlador/Datos");
     var direccionIp = datos.direccionIp;
+    var ruta = datos.rutaServicio;
+
     this.state = {
       nombre: "",
       cantidadAprendices: "",
-      consultaCrearAmbiente: "http://"+direccionIp+"/ServiciosxDH/A/CxA.php"
+      consultaCrearAmbiente: ruta+"Ambiente_Crear.php"
     };
     this.Metodo = this.Metodo.bind(this);
   }
@@ -84,7 +86,7 @@ export default class CrearAmbientes extends React.Component {
         this.state.consultaCrearAmbiente +
           "?n=" +
           this.state.nombre +
-          "&cA=" +
+          "&c=" +
           this.state.cantidadAprendices
       )
         .then(response => response.json())

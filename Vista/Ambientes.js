@@ -36,9 +36,11 @@ export default class Ambientes extends React.Component {
   constructor(props) {
     super(props);
     var datos = require("../Controlador/Datos");
-    var direccionIp = datos.direccionIp;
+    
+    
+var ruta = datos.rutaServicio;
 
-    this.state = { datos: "", estaCargado: true, eliminar: null, id: null, consultarAmbientes:'http://'+direccionIp+'/ServiciosxDH/A/RxA.php',consultaEliminar:'http://'+direccionIp+'/ServiciosxDH/A/DxA.php?id=',};
+    this.state = { datos: "", estaCargado: true, eliminar: null, id: null, consultarAmbientes:ruta+'/Ambiente.php',consultaEliminar:ruta+'/Ambiente_Eliminar.php?id='};
 
     this.LlenarTarjetas = this.LlenarTarjetas.bind(this);
 
@@ -146,15 +148,15 @@ export default class Ambientes extends React.Component {
 
   LlenarTarjetas(item) {
     console.log("#LlT LlenarTarjetas");
-
-    if (item.nombre == "") {
-      item.nombre = "Nulo";
+    
+    if (item.amb_nombre == "") {
+      item.amb_nombre = "Nulo";
     }
 
     return (
       <View style={{ padding: 10 }}>
         <Card
-          title={item.nombre}
+          title={item.amb_nombre}
           containerStyle={{ borderRadius: 10, borderColor: "#e31a1a" }}
           dividerStyle={{ backgroundColor: "#e31a1a" }}
         >
@@ -168,7 +170,7 @@ export default class Ambientes extends React.Component {
               }}
             >
               <Text style={{ fontSize: 14 }}>
-                Capacidad aprendices: {item.capacidadAprendices}
+                Capacidad aprendices: {item.amb_capacidad}
               </Text>
             </View>
 
@@ -206,7 +208,7 @@ export default class Ambientes extends React.Component {
                   borderRadius: 10
                 }}
                 onPress={() => {
-                  this.mostrarAlerta2(item.idAmbiente);
+                  this.mostrarAlerta2(item.amb_id);
                 }} //this.EliminarRegistro(item.idAmbiente)}}
               />
             </View>
@@ -246,7 +248,7 @@ export default class Ambientes extends React.Component {
                 <FlatList
                   extraData={this.state.estaCargado}
                   data={this.state.datos}
-                  keyExtractor={item => item.idAmbiente}
+                  keyExtractor={item => item.amb_id}
                   renderItem={({ item }) => this.LlenarTarjetas(item)}
                 />
               </View>

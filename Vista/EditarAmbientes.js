@@ -36,11 +36,12 @@ export default class EditarAmbientes extends React.Component {
   constructor(props) {
     super(props);
     var datos = require("../Controlador/Datos");
-    var direccionIp = datos.direccionIp;
+    var ruta = datos.rutaServicio;
+    console.log(props.state.item);
     this.state = {
       nombre: "",
       cantidadAprendices: "",
-      consultaEditarAmbiente: "http://"+direccionIp+"/ServiciosxDH/A/UxA.php"
+      consultaEditarAmbiente: ruta+"Ambiente_Editar.php"
     };
     this.EditarAmbiente = this.EditarAmbiente.bind(this);
   }
@@ -58,16 +59,17 @@ export default class EditarAmbientes extends React.Component {
   };
 
   EditarAmbiente(item) {
+    
     if (this.state.nombre == "" || this.state.cantidadAprendices == "") {
       this.mostrarAlerta();
     } else {
       consulta =
         this.state.consultaEditarAmbiente +
         "?i=" +
-        item.idAmbiente +
+        item.amb_id +
         "&n=" +
         this.state.nombre +
-        "&cA=" +
+        "&c=" +
         this.state.cantidadAprendices;
       console.log(consulta);
       fetch(consulta)

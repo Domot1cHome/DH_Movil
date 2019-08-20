@@ -4,11 +4,12 @@ import {
   View,
   Text,
   Image,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
 } from "react-native";
 import { Icon, Input, Button } from "react-native-elements";
 import AwesomeAlert from "react-native-awesome-alerts";
 import { Loguearse } from "../Controlador/ControladorLogin";
+
 
 
 export default class Login extends React.Component {
@@ -18,7 +19,7 @@ export default class Login extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { rol: "", email: "", contraseña: "" };
+    this.state = { rol: "", usuario: "", contraseña: "" };
     this.Metodo = this.Metodo.bind(this);
   }
 
@@ -27,20 +28,20 @@ export default class Login extends React.Component {
   };
 
   async Metodo() {
-    let foo = await Loguearse(this.state.email, this.state.contraseña);
-    if (foo != null) {
-      if (foo.rol == "Aprendíz") {
-        console.log("Es un Aprendíz");
-      }
-      if (foo.rol == "Instructor") {
-        console.log("Es un Instructor");
-      }
-      if (foo.rol == "Super Usuario") {
+    let respueta = await Loguearse(this.state.usuario, this.state.contraseña);
+
+    if (respueta != null) {
+
+      if (respueta.usu_rol_id == 1) {
         this.IrS();
+      } else if (respueta.usu_rol_id == 2) {
+        console.log('Usuario');
       }
+
     } else {
       this.mostrarAlerta();
     }
+
   }
 
   mostrarAlerta = () => {
@@ -83,10 +84,9 @@ export default class Login extends React.Component {
               justifyContent: "center"
             }}
             inputContainerStyle={{ borderBottomWidth: 0 }}
-            onChangeText={dato => this.setState({ email: dato })}
+            onChangeText={dato => this.setState({ usuario: dato })}
           />
 
-          <Text />
 
           <Input
             rightIcon={<Icon name="lock" size={24} color="#e31a1a" />}
