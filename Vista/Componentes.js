@@ -2,10 +2,12 @@ import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import AwesomeAlert from "react-native-awesome-alerts";
 import { Button, Card, Icon } from "react-native-elements";
-import switchOn from "/ProyectosReactNative/DH/Recursos/Iconos/switchOn.png";
-import switchOff from "/ProyectosReactNative/DH/Recursos/Iconos/switchOff.png";
+import switchOn from "../Recursos/Iconos/switchOn.png";
+import switchOff from "../Recursos/Iconos/switchOff.png";
 var datos = require("../Controlador/Datos");
-var direccionIp = datos.direccionIp;
+var direccionIp = datos.rutaServicio;
+var datos = require("../Controlador/Datos");
+var ruta = datos.rutaServicio;
 
 class ClaseEncabezado extends React.Component {
   render() {
@@ -88,10 +90,11 @@ export default class Componentes extends React.Component {
     }
 
     fetch(
-      'http://'+direccionIp+'/ServiciosxDH/ServicioManipularComponentes.php?c=' +
-        idComponente +
-        "&eC=" +
-        estadoComponente
+
+      ruta + 'Ambiente_Componente.php?c=' +
+      idComponente +
+      "&eC=" +
+      estadoComponente
     )
       .then(response => response.json())
       .then(responseJson => {
@@ -150,12 +153,6 @@ export default class Componentes extends React.Component {
         </View>
       </View>
     );
-  }
-
-  componentDidMount() {
-
-
-    
   }
 
 }

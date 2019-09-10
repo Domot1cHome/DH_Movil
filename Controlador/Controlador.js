@@ -1,4 +1,4 @@
-var datos = require("../Controlador/Datos");
+var datos = require("./Datos");
 var ruta = datos.rutaServicio;
 
 export async function Loguearse(usuario, contraseña) {
@@ -14,8 +14,8 @@ export async function Loguearse(usuario, contraseña) {
   }
   
   return entrega;
-
 }
+
 
 
 

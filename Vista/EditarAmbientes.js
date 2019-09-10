@@ -1,23 +1,18 @@
 import React from "react";
 import {
-  Alert,
-  FlatList,
-  Image,
   KeyboardAvoidingView,
-  ScrollView,
   StyleSheet,
   Text,
   View
 } from "react-native";
-import AwesomeAlert from "react-native-awesome-alerts";
-import ActionButton from "react-native-circular-action-menu";
+import Alerta from '../Componente/Alerta'
 import { Button, Icon, Input } from "react-native-elements";
 
 class ClaseEncabezado extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, flexDirection: "row", paddingRight: 57 }}>
-        <View style={styles.cabeza}>
+        <View style={estilos.cabeza}>
           <Text style={{ color: "white" }}>Editar Ambiente</Text>
         </View>
       </View>
@@ -37,11 +32,11 @@ export default class EditarAmbientes extends React.Component {
     super(props);
     var datos = require("../Controlador/Datos");
     var ruta = datos.rutaServicio;
-    console.log(props.state.item);
+
     this.state = {
       nombre: "",
       cantidadAprendices: "",
-      consultaEditarAmbiente: ruta+"Ambiente_Editar.php"
+      consultaEditarAmbiente: ruta + "Ambiente_Editar.php"
     };
     this.EditarAmbiente = this.EditarAmbiente.bind(this);
   }
@@ -59,18 +54,13 @@ export default class EditarAmbientes extends React.Component {
   };
 
   EditarAmbiente(item) {
-    
+
     if (this.state.nombre == "" || this.state.cantidadAprendices == "") {
       this.mostrarAlerta();
-    } else {
-      consulta =
-        this.state.consultaEditarAmbiente +
-        "?i=" +
-        item.amb_id +
-        "&n=" +
-        this.state.nombre +
-        "&c=" +
-        this.state.cantidadAprendices;
+
+    }
+    else {
+      consulta = this.state.consultaEditarAmbiente + "?i=" + item.amb_id + "&n=" + this.state.nombre + "&c=" + this.state.cantidadAprendices;
       console.log(consulta);
       fetch(consulta)
         .then(response => response.json())
@@ -92,42 +82,41 @@ export default class EditarAmbientes extends React.Component {
   render() {
     const { navigation } = this.props;
     item = navigation.getParam("item", "null");
-    const { mostrarAlerta } = this.state;
 
     return (
-      <View style={styles.container}>
+      <View style={estilos.container}>
         <KeyboardAvoidingView
-          style={styles.container}
+          style={estilos.container}
           behavior="padding"
           enabled
         >
-          <View style={styles.cuerpo}>
-            
-              <Input
-                rightIcon={<Icon name="school" size={24} color="#e31a1a" />}
-                placeholder={item.nombre}
-                inputStyle={styles.separadorCampoTextoInterno}
-                containerStyle={styles.campoTexto}
-                inputContainerStyle={{ borderBottomWidth: 0 }}
-                onChangeText={dato => this.setState({ nombre: dato })}
-              />
+          <View style={estilos.cuerpo}>
 
-              <View style={{ padding: 10 }} />
+            <Input
+              rightIcon={<Icon name="school" size={24} color="#e31a1a" />}
+              placeholder={item.amb_nombre}
+              inputStyle={estilos.separadorInput}
+              containerStyle={estilos.input}
+              inputContainerStyle={{ borderBottomWidth: 0 }}
+              onChangeText={dato => this.setState({ nombre: dato })}
+            />
 
-              <Input
-                rightIcon={<Icon name="person-pin" size={24} color="#e31a1a" />}
-                placeholder={item.capacidadAprendices}
-                keyboardType="numeric"
-                inputStyle={styles.separadorCampoTextoInterno}
-                containerStyle={styles.campoTexto}
-                inputContainerStyle={{ borderBottomWidth: 0 }}
-                onChangeText={dato =>
-                  this.setState({ cantidadAprendices: dato })
-                }
-              />
+            <View style={{ padding: 10 }} />
+
+            <Input
+              rightIcon={<Icon name="person-pin" size={24} color="#e31a1a" />}
+              placeholder={item.amb_capacidad}
+              keyboardType="numeric"
+              inputStyle={estilos.separadorInput}
+              containerStyle={estilos.input}
+              inputContainerStyle={{ borderBottomWidth: 0 }}
+              onChangeText={dato =>
+                this.setState({ cantidadAprendices: dato })
+              }
+            />
           </View>
 
-          <View style={styles.pie}>
+          <View style={estilos.pie}>
             <Button
               title="Actualizar"
               type="solid"
@@ -142,19 +131,12 @@ export default class EditarAmbientes extends React.Component {
             />
           </View>
 
-          <AwesomeAlert
-            show={mostrarAlerta}
-            showProgress={false}
-            title="Datos incompletos"
-            message="Faltan datos por ingresar"
-            closeOnTouchOutside={true}
-            closeOnHardwareBackPress={false}
-            showConfirmButton={true}
-            confirmText="Continuar"
-            confirmButtonColor="#e31a1a"
-            onConfirmPressed={() => {
-              this.ocultarAlerta();
-            }}
+          <Alerta
+            confirmar={() => this.ocultarAlerta()}
+            mensaje="Faltan datos por ingresar"
+            mostrar={this.state.mostrarAlerta}
+            titulo="Datos incompletos"
+            textoConfirmar="Continuar"
           />
 
         </KeyboardAvoidingView>
@@ -163,7 +145,7 @@ export default class EditarAmbientes extends React.Component {
     );
   }
 }
-const styles = StyleSheet.create({
+const estilos = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
@@ -180,7 +162,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  campoTexto: {
+  input: {
     width: 310,
     height: 45,
     borderWidth: 1,
@@ -189,7 +171,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  separadorCampoTextoInterno: {
+  separadorInput: {
     paddingLeft: 20,
     paddingRight: 20
   },
