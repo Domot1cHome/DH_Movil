@@ -25,6 +25,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": ""
+    "description": "Aplicación Móvil desarrollada con Expo Cli. Pensada para manipular el simulador virtual y poner en práctica conceptos como microservicios y  CRUD . ",
+    "githubUrl": "https://github.com/Domot1cHome/DH_Movil.git"
   }
 }

@@ -1,3 +1,3 @@
-var direccionIp="192.168.1.6";
-var ruta="DH_Web/api";
-export var rutaServicio = "http://"+direccionIp+"/"+ruta+"/";
+var direccionIp="xdomoticxhome.000webhostapp.com";
+var ruta="dh_web/api/";
+export var rutaServicio = "https://"+direccionIp+"/"+ruta+"/";
