@@ -10,7 +10,7 @@ import InterfazPrincipalS from "./Vista/InterfazPrincipalS";
 
 const Rutas = createStackNavigator({
 
-  // Login: { screen: Login },
+  Login: { screen: Login },
   InterfazPrincipalS: { screen: InterfazPrincipalS },
   Ambientes: { screen: Ambientes },
   EditarAmbientes: { screen: EditarAmbientes },
