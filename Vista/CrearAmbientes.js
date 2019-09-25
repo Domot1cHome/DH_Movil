@@ -1,16 +1,11 @@
 import React from "react";
 import {
-  Alert,
-  FlatList,
-  Image,
   KeyboardAvoidingView,
-  ScrollView,
   StyleSheet,
   Text,
   View
 } from "react-native";
 import AwesomeAlert from "react-native-awesome-alerts";
-import ActionButton from "react-native-circular-action-menu";
 import { Button, Icon, Input } from "react-native-elements";
 
 class ClaseEncabezado extends React.Component {
@@ -66,7 +61,7 @@ export default class CrearAmbientes extends React.Component {
     this.state = {
       nombre: "",
       cantidadAprendices: "",
-      consultaCrearAmbiente: ruta+"Ambiente_Crear.php"
+      consultaCrearAmbiente: ruta + "Ambiente_Crear.php"
     };
     this.Metodo = this.Metodo.bind(this);
   }
@@ -84,19 +79,19 @@ export default class CrearAmbientes extends React.Component {
     } else {
       fetch(
         this.state.consultaCrearAmbiente +
-          "?n=" +
-          this.state.nombre +
-          "&c=" +
-          this.state.cantidadAprendices
+        "?n=" +
+        this.state.nombre +
+        "&c=" +
+        this.state.cantidadAprendices
       )
         .then(response => response.json())
         .then(responseJson => {
 
           //
           let foo = responseJson[0];
-          if(foo!=false){
-            this.props.navigation.navigate("Ambientes", {respuestaBD: responseJson});
-          }else{
+          if (foo != false) {
+            this.props.navigation.navigate("Ambientes", { respuestaBD: responseJson });
+          } else {
             this.mostrarAlertaDatosIguales();
           }
 
@@ -110,7 +105,7 @@ export default class CrearAmbientes extends React.Component {
   render() {
     const { navigation } = this.props;
     datos = navigation.getParam("enviarDatos", "null");
-    const { mostrarAlerta,mostrarAlertaDatosIguales } = this.state;
+    const { mostrarAlerta, mostrarAlertaDatosIguales } = this.state;
     return (
       <View style={styles.container}>
         <KeyboardAvoidingView

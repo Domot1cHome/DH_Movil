@@ -1,12 +1,13 @@
 {
   "expo": {
     "name": "Domotic Home",
-    "slug": "DH",
+    "slug": "Prueba",
     "privacy": "public",
-    "sdkVersion": "32.0.0",
+    "sdkVersion": "35.0.0",
     "platforms": [
       "ios",
-      "android"
+      "android",
+      "web"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -24,8 +25,6 @@
     ],
     "ios": {
       "supportsTablet": true
-    },
-    "description": "Aplicación Móvil desarrollada con Expo Cli. Pensada para manipular el simulador virtual y poner en práctica conceptos como microservicios y  CRUD . ",
-    "githubUrl": "https://github.com/Domot1cHome/DH_Movil.git"
+    }
   }
 }

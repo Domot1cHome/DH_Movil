@@ -3,9 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  Image,
-  ScrollView
 } from "react-native";
 import ActionButton from "react-native-circular-action-menu";
 import { Icon } from "react-native-elements";

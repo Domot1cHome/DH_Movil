@@ -101,7 +101,7 @@ export default class Login extends React.Component {
           />
 
           <Alerta
-            confirmar={()=>this.ocultarAlerta()}
+            confirmar={() => this.ocultarAlerta()}
             mensaje="Usuario o contraseña incorrecto."
             mostrar={this.state.mostrarAlerta}
             textoConfirmar="Continuar"

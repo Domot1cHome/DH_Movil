@@ -1,11 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import AwesomeAlert from "react-native-awesome-alerts";
-import { Button, Card, Icon } from "react-native-elements";
 import switchOn from "../Recursos/Iconos/switchOn.png";
 import switchOff from "../Recursos/Iconos/switchOff.png";
-var datos = require("../Controlador/Datos");
-var direccionIp = datos.rutaServicio;
 var datos = require("../Controlador/Datos");
 var ruta = datos.rutaServicio;
 
